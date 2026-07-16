@@ -42,12 +42,48 @@ namespace DungeonSlime
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            // Begin the sprite batch to prepare for rendering
-            SpriteBatch.Begin();
+            // The bounds of the icon within the texture.
+            Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
 
-            // Draw the logo texture
-            SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+            // The bounds of the word mark within the texture.
+            Rectangle wordmarkSourceRect = new Rectangle(150, 34, 458, 58);
+
+            // Begin the sprite batch to prepare for rendering
+            SpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack);
+
+            // Draw only the icon portion of the texture
+            SpriteBatch.Draw(
+                _logo,              // texture 
+                new Vector2(        // position
+                    Window.ClientBounds.Width,
+                    Window.ClientBounds.Height) * 0.5f, 
+                iconSourceRect,               // source rectangle
+                Color.White,        // color
+                0.0f,               // rotation
+                new Vector2(
+                    iconSourceRect.Width,
+                    iconSourceRect.Height) * 0.5f,       // origin
+                1.0f,               // scale
+                SpriteEffects.None, // effects
+                1.0f                // layerdepth
+            );
+
+            // Draw only the word mark portion of the texture
+            SpriteBatch.Draw(
+                _logo,              // texture 
+                new Vector2(        // position
+                    Window.ClientBounds.Width,
+                    Window.ClientBounds.Height) * 0.5f,
+                wordmarkSourceRect,               // source rectangle
+                Color.White,        // color
+                0.0f,               // rotation
+                new Vector2(
+                    wordmarkSourceRect.Width,
+                    wordmarkSourceRect.Height) * 0.5f,       // origin
+                1.0f,               // scale
+                SpriteEffects.None, // effects
+                0.0f                // layerdepth
+            );
 
             // Always end the sprite batch when finished
             SpriteBatch.End();
