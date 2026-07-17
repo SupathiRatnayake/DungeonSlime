@@ -117,11 +117,11 @@ public class TextureAtlas
                 {
                     foreach (var region in regions)
                     {
-                        string name = region.Element("name")?.Value;
-                        int x = int.Parse(region.Element("x")?.Value ?? "0");
-                        int y = int.Parse (region.Element("y")?.Value ?? "0");
-                        int width = int.Parse(region.Element("width")?.Value ?? "0");
-                        int height = int.Parse(region.Element("height")?.Value ?? "0");
+                        string name = region.Attribute("name")?.Value;
+                        int x = int.Parse(region.Attribute("x")?.Value ?? "0");
+                        int y = int.Parse (region.Attribute("y")?.Value ?? "0");
+                        int width = int.Parse(region.Attribute("width")?.Value ?? "0");
+                        int height = int.Parse(region.Attribute("height")?.Value ?? "0");
 
                         if (!string.IsNullOrEmpty(name))
                         {
