@@ -70,7 +70,7 @@ public class TextureRegion
     /// <param name="scale">The scale factor to apply when drawing this texture region on screen.</param>
     /// <param name="effects">Specifies if this texture region should be flipped horizontally, vertically, or both when drawing on screen.</param>
     /// <param name="layerDepth">The depth of the layer to use when drawing this texture region on screen.</param>
-    private void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     {
         Draw(
             spriteBatch,
