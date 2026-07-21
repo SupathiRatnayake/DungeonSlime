@@ -74,7 +74,7 @@ public class Game1 : Core
         // Get the state of the keyboard input
         KeyboardState keyboardState = Keyboard.GetState();
 
-        // If the space key is hekld down. the movement speed is increased by 1.5
+        // If the space key is held down. the movement speed is increased by 1.5
         float speed = MOVEMENT_SPEED;
         if (keyboardState.IsKeyDown(Keys.Space))
         {
