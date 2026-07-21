@@ -31,7 +31,7 @@ public class GamePadInfo
     /// <summary>
     /// Gets the velue of the left thumbstick of this gamepad.
     /// </summary>
-    public Vector2 LeftThumbstick => CurrentState.ThumbSticks.Left;
+    public Vector2 LeftThumbStick => CurrentState.ThumbSticks.Left;
 
     /// <summary>
     /// Gets the value of the right thumbstick of this gamepad.
