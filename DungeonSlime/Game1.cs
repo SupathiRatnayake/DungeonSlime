@@ -111,11 +111,11 @@ public class Game1 : Core
         if (gamePadOne.IsButtonDown(Buttons.A))
         {
             speed *= 1.5f;
-            GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(1));
         }
         else
         {
-            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+            gamePadOne.StopVibration();
         }
 
         // Check thumbstick first since it has a higher priority over which gamepad input is movement.
