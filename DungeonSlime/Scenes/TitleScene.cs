@@ -66,10 +66,10 @@ public class TitleScene : Scene
     public override void LoadContent()
     {
         // Load the font for the standard text. using global content manager
-        _font = Core.Content.Load<SpriteFont>("font/04B_30");
+        _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
 
         // Load the font for the title text. using scene's content manager
-        _font5x = Content.Load<SpriteFont>("font/04B_30_5x");
+        _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
     }
 
     public override void Update(GameTime gameTime)
