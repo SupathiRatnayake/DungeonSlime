@@ -121,7 +121,7 @@ public class AudioController : IDisposable
     /// </summary>
     /// <param name="soundEffect">The sound effect to play.</param>
     /// <returns>The sound effect instance created by this method.</returns>
-    public SoundEffectInstance playSoundEffect(SoundEffect soundEffect)
+    public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect)
     {
         return PlaySoundEffect(soundEffect, 1.0f, 0.0f, 0.0f, false);
     }
