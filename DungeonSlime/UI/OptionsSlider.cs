@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Gum.Forms.Controls;
 using MonoGameGum.GueDeriving;
 using MonoGameLibrary.Graphics;
-using System.Security.Cryptography;
 
 namespace DungeonSlime.UI;
 
@@ -79,13 +78,13 @@ public class OptionsSlider : Slider
         offBackground.TextureAddress = TextureAddress.Custom;
         offBackground.TextureHeight = offBackgroundRegion.Height;
         offBackground.TextureLeft= offBackgroundRegion.SourceRectangle.Left;
-        offBackground.TextureTop= offBackgroundRegion.SourceRectangle.Top
+        offBackground.TextureTop = offBackgroundRegion.SourceRectangle.Top;
         offBackground.TextureHeight = offBackgroundRegion.Height;
         offBackground.TextureHeight = offBackgroundRegion.Height;
         offBackground.TextureWidth = offBackgroundRegion.Width;
         offBackground.Width = 28f;
         offBackground.WidthUnits = DimensionUnitType.Absolute;
-        topLevelContainer.AddChild(offBackground);
+        innerContainer.AddChild(offBackground);
 
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
 
@@ -121,7 +120,7 @@ public class OptionsSlider : Slider
         // Create the interactive track that responds to clicks
         // The special name "TrackInstance" is required for Slider functionality
         ContainerRuntime trackInstance = new ContainerRuntime();
-        trackInstance.Name = "TrakcInstance";
+        trackInstance.Name = "TrackInstance";
         trackInstance.Dock(Gum.Wireframe.Dock.Fill);
         trackInstance.Height = -2f;
         trackInstance.Width = -2f;
@@ -198,6 +197,11 @@ public class OptionsSlider : Slider
         sliderCategory.States.Add(focused);
 
         // Create the highlighted+focused state by cloning the focused state
+        StateSave highlightedFocused = focused.Clone();
+        highlightedFocused.Name = FrameworkElement.HighlightedFocusedStateName;
+        sliderCategory.States.Add(highlightedFocused);
+
+        // Create the highlighted state by cloning the enabled state
         StateSave highlighted = enabled.Clone();
         highlighted.Name = FrameworkElement.HighlightedStateName;
         sliderCategory.States.Add(highlighted);

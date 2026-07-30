@@ -49,7 +49,7 @@ internal class AnimatedButton : Button
         textInstance.Green = 86;
         textInstance.Red = 70;
         textInstance.UseCustomFont = true;
-        textInstance.CustomFontFile = "fonmts/04b_30.fnt";
+        textInstance.CustomFontFile = "fonts/04b_30.fnt";
         textInstance.FontScale = 0.25f;
         textInstance.Anchor(Gum.Wireframe.Anchor.Center);
         textInstance.Width = 0;
@@ -156,6 +156,6 @@ internal class AnimatedButton : Button
     /// </summary>
     private void HandleRollOn(object sender, EventArgs e)
     {
-        isFocused = true;
+        IsFocused = true;
     }
 }
