@@ -505,7 +505,7 @@ public class GameScene : Scene
         _tilemap.Draw(Core.SpriteBatch);
 
         // Draw the slime sprite.
-        _slime.Draw(Core.SpriteBatch, _slimePosition);
+        _slime.Draw(Core.SpriteBatch, Vector2.Round(_slimePosition));
 
         // Draw the bat sprite.
         _bat.Draw(Core.SpriteBatch, _batPosition);
