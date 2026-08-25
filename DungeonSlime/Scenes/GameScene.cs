@@ -42,6 +42,15 @@ public class GameScene : Scene
 
     private GameState _state;
 
+    // THe grayscale shader effect.
+    private Effect _grayscaleEffect;
+
+    // the amount of saturation to provide the grayscale shader effect.
+    private float _saturation = 1.0f;
+
+    // The speed of the fade o grayscale effect.
+    private const float FADE_SPEED = 0.02f;
+
     public override void Initialize()
     {
         // Loadcontent is called during base.Initialize().
@@ -157,12 +166,28 @@ public class GameScene : Scene
 
         // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
+
+        // Load the grayscale effect.
+        _grayscaleEffect = Content.Load<Effect>("effects/grayscaleEffect");
     }
 
     public override void Update(GameTime gameTime)
     {
         // ensure the UI is always updated.
         _ui.Update(gameTime);
+
+        if (_state != GameState.Playing)
+        {
+            // The game is in either a paused or gam over state, so
+            // gradually decrease the saturation to create the fading grayscale.
+            _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
+
+            // If its just a game over state, return back.
+            if (_state == GameState.GameOver)
+            {
+                return;
+            }
+        }
 
         // If the game is in a game over state, immediately return back
         // here.
@@ -355,6 +380,9 @@ public class GameScene : Scene
 
             // And set the state to paused.
             _state = GameState.Paused;
+
+            // Set the grayscale effect saturation to 1.0f
+            _saturation = 1.0F;
         }
     }
 
@@ -365,6 +393,9 @@ public class GameScene : Scene
 
         // Set the game state to game over.
         _state = GameState.GameOver;
+
+        // Set the grayscale effect saturation to 1.0f
+        _saturation = 1.0f;
     }
 
     public override void Draw(GameTime gameTime)
@@ -372,8 +403,19 @@ public class GameScene : Scene
         // Clear the back buffer.
         Core.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // Begin the sprite batch to prepare for rendering.
-        Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        if (_state != GameState.Playing)
+        {
+            // We are in a game over state, so apply the saturation parameter.
+            _grayscaleEffect.Parameters["Saturation"].SetValue(_saturation);
+
+            // And begin the spritebatch using the grayscale effect.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect);
+        }
+        else
+        {
+            // Otherwise, just begin the sprite batch as normal.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        }
 
         // Draw the tilemap.
         _tilemap.Draw(Core.SpriteBatch);
